@@ -1,0 +1,23 @@
+{
+  "name": "automation",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "chromedriver": "^2.40.0",
+    "csv": "^4.0.0",
+    "dotenv": "^6.0.0",
+    "file-api": "^0.10.4",
+    "googleapis": "^27.0.0",
+    "jquery": "^3.3.1",
+    "nightwatch": "^0.9.21",
+    "request-promise": "^4.2.2",
+    "yamljs": "^0.3.0",
+    "yargs": "^12.0.1"
+  }
+}

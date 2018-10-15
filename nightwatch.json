@@ -1,0 +1,48 @@
+{
+  "src_folders": [
+    "./src/tests"
+  ],
+  "output_folder": "./src/logs",
+  "custom_commands_path": [
+    "./src/support/commands"
+  ],
+  "custom_assertions_path": [
+    "./src/support/assertions"
+  ],
+  "page_objects_path": "./src/pages",
+  "globals_path": "./src/globals_module.js",
+  "selenium": {
+    "start_process": false
+  },
+  "test_settings": {
+    "default": {
+      "selenium_port": 9515,
+      "selenium_host": "localhost",
+      "default_path_prefix": "",
+      "end_session_on_fail": true,
+      "desiredCapabilities": {
+        "browserName": "chrome",
+        "acceptSslCerts": true,
+        "chromeOptions": {
+          "prefs": {
+            "credentials_enable_service": false,
+            "profile.password_manager_enabled": false
+          },
+          "args": [
+            "disable-boot-animation",
+            "disable-login-animations",
+            "disable-sync",
+            "window-size=1600,1200",
+            "window-position=10,10"
+          ]
+        }
+      },
+      "screenshots": {
+        "enabled": true,
+        "path": "<DEFINE_SCREENSHOT_PATH>",
+        "on_failure": true,
+        "on_error": true
+      }
+    }
+  }
+}
