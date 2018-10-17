@@ -20,5 +20,7 @@ module.exports = {
         saveButton: '.fa-save',
         backButton: '.fa-arrow-circle-o-left',
         toast: '#toast-container',
+        deleteButton: '.btn-delete',
+        confirmDeleteButton: '.btnOk:contains(\'Đồng ý\')',
     }
 };

@@ -3,4 +3,6 @@ node_modules/
 src/logs/
 credentials.json
 juno_credentials.csv
+lazada_credentials.csv
+oss_credentials.csv
 token.json

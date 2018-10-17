@@ -6,7 +6,7 @@ const MODE = 2; // MODE: 1=SINGLE, 2=DOUBLE
 const COMBO_PRICE = 600000; // NEEDED IF MODE == 1
 const START_DATE_STR = '10/10/2018';
 const END_DATE_STR = '20/10/2018';
-const NUMBER_OF_SHEETS = 5;
+const NUMBER_OF_SHEETS = 1;
 // END INPUTS
 
 const LAST_COMBO_FILE = `./src/tests/combo_${MODE}/last_added_combo.txt`;
