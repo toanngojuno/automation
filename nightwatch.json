@@ -39,9 +39,9 @@
       },
       "screenshots": {
         "enabled": true,
-        "path": "<DEFINE_SCREENSHOT_PATH>",
+        "path": "./screenshots/",
         "on_failure": true,
-        "on_error": true
+        "on_error": false
       }
     }
   }

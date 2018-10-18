@@ -6,8 +6,8 @@ module.exports = {
 
     }],
     elements: {
-        username: 'input[name=\'TPL_username\']',
-        password: 'input[name=\'TPL_password\']',
+        username: '#input-user',
+        password: '#input-password',
         login: '.b-login',
     }
 };

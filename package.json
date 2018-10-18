@@ -19,5 +19,8 @@
     "request-promise": "^4.2.2",
     "yamljs": "^0.3.0",
     "yargs": "^12.0.1"
+  },
+  "dependencies": {
+    "lazada-open-platform-sdk": "^2.0.0-0"
   }
 }

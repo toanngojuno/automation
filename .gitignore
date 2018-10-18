@@ -1,6 +1,7 @@
 .idea/
 node_modules/
 src/logs/
+screenshots/
 credentials.json
 juno_credentials.csv
 lazada_credentials.csv
