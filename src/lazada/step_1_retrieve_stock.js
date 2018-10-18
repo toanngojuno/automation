@@ -1,8 +1,6 @@
 const parse = require('csv-parse/lib/sync');
 const fs = require('fs');
 
-// INPUTS
-// END INPUTS
 const RETRIEVE_DONE_FILE = './src/lazada/retrieve-stock-done.txt';
 const BARCODE_FILE = './src/lazada/barcode-generated.csv';
 const LAST_RETRIEVED_SKU_GROUP_FILE = './src/lazada/last_retrieve_sku_group.txt';
@@ -16,7 +14,6 @@ const STORE = 'CH051';
 
 module.exports = {
     'Retrieving Stock from OSS...': function (browser) {
-        // fs.unlink(RETRIEVE_DONE_FILE);
         let oss_home = browser.page.oss_home();
         let oss_stock = browser.page.oss_stock();
         let skuList = fs.readFileSync(PRODUCT_LIST_FILE).toString().trim().split('\n');

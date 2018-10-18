@@ -1,12 +1,12 @@
-import sys
-
-print(sys.path)
+import os
 
 from lazop import LazopClient, LazopRequest
 
-LAZADA_CREDENTIALS_FILE = '/Users/toanngo/juno/automation/lazada_credentials.csv'
-ACCESS_TOKEN_FILE = '/Users/toanngo/juno/automation/src/lazada/access_token.txt'
-AUTH_CODE_FILE = '/Users/toanngo/juno/automation/src/lazada/auth_code.txt'
+
+BASE_DIR = os.getcwd()
+LAZADA_CREDENTIALS_FILE = BASE_DIR + '/lazada_credentials.csv'
+ACCESS_TOKEN_FILE = BASE_DIR + '/src/lazada/access_token.txt'
+AUTH_CODE_FILE = BASE_DIR + '/src/lazada/auth_code.txt'
 
 access_token = False
 auth_code = False

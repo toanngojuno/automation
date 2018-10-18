@@ -1,21 +1,12 @@
 #!/ave/bin/python
 
-# funtests.py
-#
-# Use this script to run functional tests.
-#
-# Examples:
-# ./funtests.py  # will run tests against your local box with creds in nightwatch.json
-# ./funtests.py --environment staging --adminCredentialsFile /Users/jenkins/.superadmin.yaml
-
 import argparse
 import os
 import shlex
-import sys
-import time
 import signal
 import subprocess
-from subprocess import Popen, PIPE
+import sys
+from subprocess import Popen
 
 TIMEOUT = 90  # seconds. If the terminal does not provide any output for this amount of time, we kill it.
 
@@ -63,7 +54,7 @@ parser.add_argument("--logDirectory",
 args = parser.parse_args()
 
 args.repeat = args.repeat + 1  # always run once, repeat is the number of times to repeat (not run)
-exit_code = 1 # init to error, that way if nothing runs it is an error.
+exit_code = 1  # init to error, that way if nothing runs it is an error.
 test_failure_detected = False
 
 for x in range(0, args.repeat):
@@ -86,7 +77,9 @@ for x in range(0, args.repeat):
     cmd = os.path.join(os.curdir, cmd)
     print(cmd)
 
-    process = Popen(shlex.split(cmd), shell=False, bufsize=0, stdout=subprocess.PIPE, stderr=subprocess.STDOUT) # Use shlex to preserve quotes.
+    process = Popen(shlex.split(cmd), shell=False, bufsize=0, stdout=subprocess.PIPE,
+                    stderr=subprocess.STDOUT)  # Use shlex to preserve quotes.
+
 
     def _handler(signum, frame):
         error = 'Timeout of {} seconds reached, stopping execution'.format(TIMEOUT)
@@ -95,6 +88,7 @@ for x in range(0, args.repeat):
         if (not test_failure_detected):
             print("No failure, but tests hang on completion.")
         raise RuntimeError(error)
+
 
     signal.signal(signal.SIGALRM, _handler)
 
@@ -126,8 +120,8 @@ for x in range(0, args.repeat):
     for line in out.splitlines():
         # this is to ensure we only kill the ones that are spawned by nightwatch
         if 'node_modules/chromedriver' in line or '--test-type=webdriver' in line:
-           pid = int(line.split(None, 1)[0])
-           os.kill(pid, signal.SIGKILL)
+            pid = int(line.split(None, 1)[0])
+            os.kill(pid, signal.SIGKILL)
 
     chrome_killer.wait()
 
