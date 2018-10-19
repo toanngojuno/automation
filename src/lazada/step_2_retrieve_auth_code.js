@@ -1,9 +1,9 @@
 // https://auth.lazada.com/oauth/authorize?response_type=code&force_auth=true&redirect_uri=https://myapp.com&client_id=106591
 const fs = require('fs');
 
-const AUTH_CODE_FILE = './src/lazada/auth_code.txt';
-const ACCESS_TOKEN_FILE = './src/lazada/access_token.txt';
-const LAST_AUTH_CODE_DATE_FILE = './src/lazada/last_auth_code_date.txt';
+const AUTH_CODE_FILE = './src/lazada/lazada_auth_auth_code.txt';
+const ACCESS_TOKEN_FILE = './src/lazada/lazada_auth_access_token.txt';
+const LAST_AUTH_CODE_DATE_FILE = './src/lazada/lazada_auth_last_auth_code_date.txt';
 const LAST_AUTH_CODE_DATE = fs.readFileSync(LAST_AUTH_CODE_DATE_FILE).toString().trim();
 const LAZADA_CREDENTIALS = fs.readFileSync('./lazada_credentials.csv').toString().trim().split(',');
 const CREDENTIALS = {

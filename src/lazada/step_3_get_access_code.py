@@ -5,8 +5,8 @@ from lazop import LazopClient, LazopRequest
 
 BASE_DIR = os.getcwd()
 LAZADA_CREDENTIALS_FILE = BASE_DIR + '/lazada_credentials.csv'
-ACCESS_TOKEN_FILE = BASE_DIR + '/src/lazada/access_token.txt'
-AUTH_CODE_FILE = BASE_DIR + '/src/lazada/auth_code.txt'
+ACCESS_TOKEN_FILE = BASE_DIR + '/src/lazada/lazada_auth_access_token.txt'
+AUTH_CODE_FILE = BASE_DIR + '/src/lazada/lazada_auth_auth_code.txt'
 
 access_token = False
 auth_code = False

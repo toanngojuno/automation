@@ -1,9 +1,9 @@
 const parse = require('csv-parse/lib/sync');
 const fs = require('fs');
 
-const RETRIEVE_DONE_FILE = './src/lazada/retrieve-stock-done.txt';
-const BARCODE_FILE = './src/lazada/barcode-generated.csv';
-const LAST_RETRIEVED_SKU_GROUP_FILE = './src/lazada/last_retrieve_sku_group.txt';
+const RETRIEVE_DONE_FILE = './src/lazada/oss_stock_done.txt';
+const BARCODE_FILE = './src/lazada/oss_barcodes.csv';
+const LAST_RETRIEVED_SKU_GROUP_FILE = './src/lazada/oss_last_retrieved_sku_group.txt';
 const LAST_RETRIEVED_SKU_GROUP = fs.readFileSync(LAST_RETRIEVED_SKU_GROUP_FILE).toString().trim();
 const PRODUCT_LIST_FILE = `./src/lazada/product_list.csv`;
 const OSS_CREDENTIALS = fs.readFileSync('./oss_credentials.csv').toString().trim().split(',');

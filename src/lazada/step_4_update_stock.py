@@ -3,9 +3,9 @@ import os
 from lazop.base import LazopClient, LazopRequest
 BASE_DIR = os.getcwd()
 LAZADA_CREDENTIALS_FILE = BASE_DIR + '/lazada_credentials.csv'
-BARCODE_FILE = BASE_DIR + '/src/lazada/barcode-generated.csv'
-ACCESS_TOKEN_FILE = BASE_DIR + '/src/lazada/access_token.txt'
-AUTH_CODE_FILE = BASE_DIR + '/src/lazada/auth_code.txt'
+BARCODE_FILE = BASE_DIR + '/src/lazada/oss_barcodes.csv'
+ACCESS_TOKEN_FILE = BASE_DIR + '/src/lazada/lazada_auth_access_token.txt'
+AUTH_CODE_FILE = BASE_DIR + '/src/lazada/lazada_auth_auth_code.txt'
 PAYLOAD_BUCKET = 30
 
 with open(LAZADA_CREDENTIALS_FILE) as file:

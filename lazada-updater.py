@@ -12,28 +12,28 @@ exit_code = 1  # init to error, that way if nothing runs it is an error.
 
 BASE_DIR = os.getcwd()
 
-ACCESS_TOKEN_FILE = BASE_DIR + '/src/lazada/access_token.txt'
-AUTH_CODE_FILE = BASE_DIR + '/src/lazada/auth_code.txt'
-LAST_AUTH_CODE_DATE = BASE_DIR + '/src/lazada/last_auth_code_date.txt'
+ACCESS_TOKEN_FILE = BASE_DIR + '/src/lazada/lazada_auth_access_token.txt'
+AUTH_CODE_FILE = BASE_DIR + '/src/lazada/lazada_auth_auth_code.txt'
+LAST_AUTH_CODE_DATE = BASE_DIR + '/src/lazada/lazada_auth_last_auth_code_date.txt'
 
-RETRIEVE_STOCK_DONE_FILE = BASE_DIR + '/src/lazada/retrieve-stock-done.txt'
-BARCODE_FILE = BASE_DIR + '/automation/src/lazada/barcode-generated.csv'
-LAST_RETRIEVE_SKU_GROUP = BASE_DIR + '/automation/src/lazada/last_retrieve_sku_group.txt'
+RETRIEVE_STOCK_DONE_FILE = BASE_DIR + '/src/lazada/oss_stock_done.txt'
+BARCODE_FILE = BASE_DIR + '/src/lazada/oss_barcodes.csv'
+LAST_RETRIEVE_SKU_GROUP = BASE_DIR + '/src/lazada/oss_last_retrieved_sku_group.txt'
 
 files_to_clean = [RETRIEVE_STOCK_DONE_FILE, BARCODE_FILE, LAST_RETRIEVE_SKU_GROUP]
 files_to_reset = [ACCESS_TOKEN_FILE, AUTH_CODE_FILE, LAST_AUTH_CODE_DATE]
 
 parser = argparse.ArgumentParser()
 
-parser.add_argument("--clean",
-                    help="Updating with new stock data", action="store_true", default=False)
+parser.add_argument("--cont",
+                    help="Continue previous runs", action="store_true", default=False)
 
 parser.add_argument("--reset",
                     help="Reset everything", action="store_true", default=False)
 
 args = parser.parse_args()
 
-if args.clean:
+if not args.cont:
     for file in files_to_clean:
         f = open(file, "w")
         f.write('')
