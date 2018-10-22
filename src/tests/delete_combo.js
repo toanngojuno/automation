@@ -1,12 +1,8 @@
-const parse = require('csv-parse/lib/sync');
 const fs = require('fs');
 
 // INPUTS
-const ITEMS_TO_DELETE = 5000;
+const ITEMS_TO_DELETE = 10000;
 // END INPUTS
-
-const LAST_COMBO_FILE = `./src/tests/combo_${MODE}/last_added_combo.txt`;
-const LAST_COMBO_NAME = fs.readFileSync(LAST_COMBO_FILE).toString().trim();
 const CREDENTIALS_FILE = './juno_credentials.csv';
 const CREDENTIALS = fs.readFileSync(CREDENTIALS_FILE).toString().trim().split(',');
 const USERNAME = CREDENTIALS[0];
@@ -22,8 +18,11 @@ module.exports = {
         let plugins = browser.page.plugins();
         plugins.navigate();
         browser.frame('app-embed');
-        plugins.waitAndClick('@newComboTab');
 
-        for (let i = 0; i < )
+        for (let i = 0; i < ITEMS_TO_DELETE; i++) {
+            plugins.clickAtIndex('@deleteButton', 1);
+            plugins.click('.btnOk');
+            browser.pause(500);
+        }
     },
 };

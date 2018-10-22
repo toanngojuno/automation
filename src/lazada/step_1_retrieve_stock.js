@@ -11,6 +11,7 @@ const CREDENTIALS = {
     OSS: {USERNAME: OSS_CREDENTIALS[0], PASSWORD: OSS_CREDENTIALS[1]},
 };
 const STORE = 'CH051';
+const STOCK_OFFSET = 3;
 
 module.exports = {
     'Retrieving Stock from OSS...': function (browser) {
@@ -51,6 +52,7 @@ module.exports = {
                     .waitAndClick('@firstSearchResult');
             });
             oss_stock.click('@clearWrongSearch');
+            oss_stock.assert.elementCount('@searchItem', group.length)
             oss_stock.waitAndClick('@submitSearch')
                 .waitForElementNotVisible('@loading');
             browser.elements('css selector', '#reportcontain tbody tr', function (result) {
@@ -66,7 +68,7 @@ module.exports = {
                         });
                         text = text.trim().split(' ');
                         let barcode = text[1];
-                        let stock = parseInt(text[text.length - 1]) - 2;
+                        let stock = parseInt(text[text.length - 1]) - STOCK_OFFSET;
                         if (stock < 0) stock = 0;
                         let barcodeWriter, lastAddedWriter;
                         try {

@@ -15,6 +15,7 @@ module.exports = {
         clearSearchResult: '.select2-selection__clear',
         clearWrongSearch: '.select2-selection__choice[title="Tất cả"] .select2-selection__choice__remove',
         searchLoading: '.loading-results',
+        searchItem: '.select2-selection__choice',
         submitSearch: 'button.btn-primary',
         pageLimitButton: '.dropup button',
         limit100: '.dropup ul li:nth-child(3)',
