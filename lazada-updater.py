@@ -94,6 +94,10 @@ while True:
         continue
 
     # Step 1
+    print("Updating Lazada Stock...")
+    print("Starting time:")
+    print(current_time)
+    print()
     print("STEP 1...")
     while True:
         BREAK = False
@@ -126,3 +130,7 @@ while True:
     print("STEP 4...")
     cmd = "python /Users/toanngo/juno/automation/src/lazada/step_4_update_stock.py"
     run_process(cmd)
+
+    print("DONE")
+    print("Ending time:")
+    print(datetime.now())
