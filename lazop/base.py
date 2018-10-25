@@ -20,6 +20,8 @@ import socket
 import platform
 
 # dir = os.getenv('HOME')
+from idna import unicode
+
 dir = expanduser("~")
 isExists = os.path.exists(dir + "/logs")
 if not isExists:
