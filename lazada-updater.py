@@ -37,6 +37,12 @@ parser.add_argument("--cont",
 parser.add_argument("--reset",
                     help="Reset everything", action="store_true", default=False)
 
+parser.add_argument("--force",
+                    help="Sync regardless of hours", action="store_true", default=False)
+
+parser.add_argument("--once",
+                    help="Update once then exit", action="store_true", default=False)
+
 args = parser.parse_args()
 
 if not args.cont:
@@ -90,14 +96,13 @@ while True:
             continue
 
     # making sure we're only updating at the right hours
-    if current_time.hour not in UPDATE_HOURS:
+    if current_time.hour not in UPDATE_HOURS and not args.force:
         continue
 
     # Step 1
     print("Updating Lazada Stock...")
     print("Starting time:")
     print(current_time)
-    print()
     print("STEP 1...")
     while True:
         BREAK = False
@@ -134,3 +139,6 @@ while True:
     print("DONE")
     print("Ending time:")
     print(datetime.now())
+
+    if args.once:
+        break

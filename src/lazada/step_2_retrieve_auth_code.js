@@ -3,6 +3,7 @@ const fs = require('fs');
 
 const AUTH_CODE_FILE = './src/lazada/lazada_auth_auth_code.txt';
 const ACCESS_TOKEN_FILE = './src/lazada/lazada_auth_access_token.txt';
+const ACCESS_TOKEN = fs.readFileSync(ACCESS_TOKEN_FILE).toString().trim();
 const LAST_AUTH_CODE_DATE_FILE = './src/lazada/lazada_auth_last_auth_code_date.txt';
 const LAST_AUTH_CODE_DATE = fs.readFileSync(LAST_AUTH_CODE_DATE_FILE).toString().trim();
 const LAZADA_CREDENTIALS = fs.readFileSync('./lazada_credentials.csv').toString().trim().split(',');
@@ -17,7 +18,7 @@ const CREDENTIALS = {
 
 module.exports = {
     'Retrieving Auth Code from Lazada...': function (browser) {
-        if ((new Date() - new Date(LAST_AUTH_CODE_DATE)) / 3600 / 1000 <= 6) {
+        if (ACCESS_TOKEN != '' && (new Date() - new Date(LAST_AUTH_CODE_DATE)) / 3600 / 1000 <= 6) {
             return;
         }
         fs.writeFileSync(AUTH_CODE_FILE, '');
