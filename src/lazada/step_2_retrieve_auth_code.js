@@ -18,7 +18,8 @@ const CREDENTIALS = {
 
 module.exports = {
     'Retrieving Auth Code from Lazada...': function (browser) {
-        if (ACCESS_TOKEN != '' && (new Date() - new Date(LAST_AUTH_CODE_DATE)) / 3600 / 1000 <= 6) {
+        // The auth code is valid for 7 days, so we're only retrieving it every 6 days - just to be safe.
+        if (ACCESS_TOKEN != '' && (new Date() - new Date(LAST_AUTH_CODE_DATE)) / 3600 / 1000 / 24 <= 6) {
             return;
         }
         fs.writeFileSync(AUTH_CODE_FILE, '');

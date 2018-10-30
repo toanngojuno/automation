@@ -84,15 +84,15 @@ def run_process(cmd):
 
 while True:
     current_time = datetime.now()
-    date_str = ''
+    last_sync_date_str = ''
     with open(LAST_SYNC_TIME, 'r') as file:
         for line in file:
-            date_str = line.strip()
-    if date_str:
+            last_sync_date_str = line.strip()
+    if last_sync_date_str:
         # making sure we don't update too frequently
-        last_sync_time = time_parser.parse(date_str)
-        diff = current_time - last_sync_time
-        if diff.seconds / 3600 <= 6:
+        diff = current_time - time_parser.parse(last_sync_date_str)
+        hours_passed = diff.days * 24 + diff.seconds / 3600
+        if hours_passed <= 6:
             continue
 
     # making sure we're only updating at the right hours
