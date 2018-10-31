@@ -61,6 +61,7 @@ def kill_chrome():
     chrome_killer = subprocess.Popen(['ps', '-A'], stdout=subprocess.PIPE)
     out, err = chrome_killer.communicate()
     for line in out.splitlines():
+        line = str(line)
         # this is to ensure we only kill the ones that are spawned by nightwatch
         if 'node_modules/chromedriver' in line or '--test-type=webdriver' in line:
             pid = int(line.split(None, 1)[0])
@@ -72,7 +73,7 @@ def run_process(cmd):
     process = Popen(shlex.split(cmd), shell=False, bufsize=0, stdout=subprocess.PIPE,
                     stderr=subprocess.STDOUT)  # Use shlex to preserve quotes.
     while True:
-        output = process.stdout.readline()
+        output = str(process.stdout.readline())
         if output == '' and process.poll() is not None:
             break
         if output:

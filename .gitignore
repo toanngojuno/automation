@@ -8,3 +8,4 @@ lazada_credentials.csv
 oss_credentials.csv
 token.json
 venv
+*.pyc
