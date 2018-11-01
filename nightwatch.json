@@ -33,7 +33,8 @@
             "disable-login-animations",
             "disable-sync",
             "window-size=1600,1200",
-            "window-position=10,10"
+            "window-position=10,10",
+            "headless"
           ]
         }
       },
