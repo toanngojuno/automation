@@ -89,7 +89,7 @@ while True:
     with open(LAST_SYNC_TIME, 'r') as file:
         for line in file:
             last_sync_date_str = line.strip()
-    if last_sync_date_str:
+    if last_sync_date_str and not args.force:
         # making sure we don't update too frequently
         diff = current_time - time_parser.parse(last_sync_date_str)
         hours_passed = diff.days * 24 + diff.seconds / 3600
@@ -141,5 +141,5 @@ while True:
     print("Ending time:")
     print(datetime.now())
 
-    if args.once:
+    if args.once or args.force:
         break
