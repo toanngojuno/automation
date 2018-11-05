@@ -39,10 +39,10 @@ STORE_PSI_SHEET = 'Website PSI'
 STORE_PSI_RANGE = 'A2:D500'
 
 NEW_PRODUCTS_SHEET = 'Sản phẩm mới nhất'
-NEW_PRODUCTS_RANGE = 'A2:E11'
+NEW_PRODUCTS_RANGE = 'A2:E50'
 
 HOT_PRODUCTS_SHEET = 'Sản phẩm bán chạy nhất'
-HOT_PRODUCTS_RANGE = 'A2:E11'
+HOT_PRODUCTS_RANGE = 'A2:E50'
 
 wb = openpyxl.load_workbook(EXCEL_FILE)
 product_map = {}
@@ -94,38 +94,39 @@ def category_to_url_psi(category):
         return COLLECTION_URL_MAP['PSI - Túi Xách']
 
 
-# SP mới
-sheet = sheet_lookup(NEW_PRODUCTS_SHEET)
-current_category = None
-product_map[COLLECTION_URL_MAP['Top sản phẩm mới']] = []
-for row in sheet[NEW_PRODUCTS_RANGE]:
-    product_map[COLLECTION_URL_MAP['Top sản phẩm mới']].append(row[2].value.strip())
+# # SP mới
+# sheet = sheet_lookup(NEW_PRODUCTS_SHEET)
+# current_category = None
+# product_map[COLLECTION_URL_MAP['Top sản phẩm mới']] = []
+# for row in sheet[NEW_PRODUCTS_RANGE]:
+#     if row[2].value:
+#         product_map[COLLECTION_URL_MAP['Top sản phẩm mới']].append(row[2].value.strip())
 
-# SP hot
-sheet = sheet_lookup(HOT_PRODUCTS_SHEET)
-current_category = None
-product_map[COLLECTION_URL_MAP['Top sản phẩm bán chạy']] = []
-for row in sheet[HOT_PRODUCTS_RANGE]:
-    print(row)
-    product_map[COLLECTION_URL_MAP['Top sản phẩm bán chạy']].append(row[2].value.strip())
+# # SP hot
+# sheet = sheet_lookup(HOT_PRODUCTS_SHEET)
+# current_category = None
+# product_map[COLLECTION_URL_MAP['Top sản phẩm bán chạy']] = []
+# for row in sheet[HOT_PRODUCTS_RANGE]:
+#     if row[2].value:
+#         product_map[COLLECTION_URL_MAP['Top sản phẩm bán chạy']].append(row[2].value.strip())
 
 # Website Juno
-sheet = sheet_lookup(WEBSITE_PSI_SHEET)
-current_category = None
-for row in sheet[WEBSITE_PSI_RANGE]:
-    if not row[0].value and row[1].value:
-        if 'cm' not in row[1].value:
-            current_category = category_to_url_web(row[1].value.strip())
-            product_map[current_category] = []
-            continue
-    if current_category and row[2].value:
-        product_map[current_category].append(row[2].value.strip())
+# sheet = sheet_lookup(WEBSITE_PSI_SHEET)
+# current_category = None
+# for row in sheet[WEBSITE_PSI_RANGE]:
+#     if not row[0].value and row[1].value:
+#         if 'cm' not in row[1].value:
+#             current_category = category_to_url_web(row[1].value.strip())
+#             product_map[current_category] = []
+#             continue
+#     if current_category and row[2].value:
+#         product_map[current_category].append(row[2].value.strip())
 
 # PSI Juno
 sheet = sheet_lookup(STORE_PSI_SHEET)
 current_category = None
 for row in sheet[STORE_PSI_RANGE]:
-    if row[0].value and not row[1].value and not row[2].value and not row[3].value:
+    if row[0].value and not row[1].value and not row[2].value and not row[3].value and row[0].value.strip() != 'STT':
         current_category = category_to_url_psi(row[0].value.strip())
         product_map[current_category] = []
         continue
