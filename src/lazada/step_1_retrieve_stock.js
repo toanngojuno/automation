@@ -29,9 +29,7 @@ module.exports = {
         oss_stock.waitForElementNotVisible('@loading')
             .waitAndClick('@storeDropDown')
             .waitAndClick('@deselectAllStores')
-            .waitAndSetValue('@storeSearchInput', STORE)
-            .waitAndClick('@firstStoreResult');
-
+            .waitAndSetValue('@storeSearchInput', [STORE, browser.Keys.ENTER]);
         let skuGroups = combineSkus(skuList, 5);
         let skipGroup = true;
         for (let i = 0; i < skuGroups.length; i++) {
@@ -52,7 +50,7 @@ module.exports = {
                     .waitAndClick('@firstSearchResult');
             });
             oss_stock.click('@clearWrongSearch');
-            oss_stock.assert.elementCount('@searchItem', group.length)
+            oss_stock.assert.elementCount('@searchItem', group.length);
             oss_stock.waitAndClick('@submitSearch')
                 .waitForElementNotVisible('@loading');
             browser.elements('css selector', '#reportcontain tbody tr', function (result) {
@@ -84,7 +82,7 @@ module.exports = {
                             if (lastAddedWriter !== undefined) fs.closeSync(lastAddedWriter);
                         }
                     });
-                })
+                });
             });
         }
     },

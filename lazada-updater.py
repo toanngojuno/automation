@@ -12,7 +12,7 @@ from dateutil import parser as time_parser
 
 exit_code = 1  # init to error, that way if nothing runs it is an error.
 
-UPDATE_HOURS = [12, 0]
+UPDATE_HOURS = [1, 9, 13, 18]
 
 BASE_DIR = os.getcwd()
 

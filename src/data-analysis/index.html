@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Hello Analytics Reporting API V4</title>
+    <meta name="google-signin-client_id"
+          content="922795112602-hl9hrcbsnr8mee764gdilibhb3fuf1q3.apps.googleusercontent.com">
+    <meta name="google-signin-scope" content="https://www.googleapis.com/auth/analytics.readonly">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+<h1>Hello Analytics Reporting API V4</h1>
+
+<!-- The Sign-in button. This will run `queryReports()` on success. -->
+<p class="g-signin2" data-onsuccess="init"></p>
+
+<!-- The API response will be printed here. -->
+<textarea cols="80" rows="20" id="query-output"></textarea>
+<script src="cat200.js"></script>
+<script src="cat300.js"></script>
+<script src="cat400.js"></script>
+<script>
+    // Replace with your view ID.
+    var VIEW_ID = '94486988';
+
+    function init() {
+        let cat = cat400; // cat200, cat300, or cat400
+        $('#query-output').val('sku,price,sessions,conversions,conversionRate,valuePerSession,currentPosition\n');
+
+        let i = 0;
+
+        function f() {
+            let sku = cat[i].split(',')[0];
+            let price = parseInt(cat[i].split(',')[1] / 100);
+            queryReports(sku, price, i);
+            i++;
+            if (i < cat.length) {
+                setTimeout(f, 1500);
+            }
+        }
+
+        f();
+    }
+
+    // Query the API and print the results to the page.
+    function queryReports(sku, price, position) {
+        return gapi.client.request({
+            path: '/v4/reports:batchGet',
+            root: 'https://analyticsreporting.googleapis.com/',
+            method: 'POST',
+            body: {
+                reportRequests: [{
+                    viewId: VIEW_ID,
+                    dateRanges: [{
+                        startDate: '7daysAgo',
+                        endDate: 'today'
+                    }],
+                    "dimensionFilterClauses": [{
+                        "filters": [{
+                            "dimensionName": "ga:landingPagePath",
+                            "operator": "PARTIAL",
+                            "expressions": [sku]
+                        }]
+                    }],
+                    metrics: [{
+                        expression: 'ga:sessions'
+                    },
+                        {
+                            expression: 'ga:goal1Completions'
+                        },
+                        {
+                            expression: 'ga:goal1ConversionRate'
+                        },
+                    ],
+                    "orderBys": [{
+                        "fieldName": "ga:sessions",
+                        "sortOrder": "DESCENDING"
+                    },]
+                }]
+            }
+        }).then((response) => {
+            displayResults(response, sku, price, position)
+        })
+    }
+
+    function displayResults(response, sku, price, position) {
+        let values;
+        try {
+            values = response.result.reports['0'].data.rows['0'].metrics['0'].values;
+        } catch (err) {
+            values = [0, 0, 0]
+        }
+        let sessions = values[0],
+            conversions = values[1],
+            conversionRate = Number(parseFloat(values[2]).toFixed(2));
+        let result =
+            `${sku},${price},${sessions},${conversions},${conversionRate},${price * conversionRate / 100},${position + 1}\n`;
+        let ta = $('#query-output');
+        ta.val(ta.val() + result);
+        document.getElementById('query-output').scrollTop = document.getElementById(
+            'query-output'
+        ).scrollHeight;
+    }
+</script>
+
+<!-- Load the JavaScript API client and Sign-in library. -->
+<script src="https://apis.google.com/js/client:platform.js"></script>
+</body>
+
+</html>
