@@ -25,11 +25,9 @@ def create_payload(data, limit, offset):
     payload = '<Request><Product><Skus>'
     for i in range(offset, offset + limit):
         item = data[i]
-        # availability = str(int(item[2]) > 0).lower()
         payload += '<Sku>'
         payload += '<SellerSku>' + item[1] + '</SellerSku>'
         payload += '<Quantity>' + item[2] + '</Quantity>'
-        # payload += '<active>' + availability + '</active>'
         payload += '</Sku>'
     payload += '</Skus></Product></Request>'
     return payload

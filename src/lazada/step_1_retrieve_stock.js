@@ -31,6 +31,7 @@ module.exports = {
             .waitAndClick('@deselectAllStores')
             .waitAndSetValue('@storeSearchInput', [STORE, browser.Keys.ENTER]);
         let skuGroups = combineSkus(skuList, 5);
+        
         let skipGroup = true;
         for (let i = 0; i < skuGroups.length; i++) {
             let group = skuGroups[i];

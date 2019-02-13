@@ -12,7 +12,7 @@ from dateutil import parser as time_parser
 
 exit_code = 1  # init to error, that way if nothing runs it is an error.
 
-UPDATE_HOURS = [1, 9, 13, 18]
+UPDATE_HOURS = [9, 13, 17]
 
 BASE_DIR = os.getcwd()
 
@@ -44,11 +44,6 @@ parser.add_argument("--once",
                     help="Update once then exit", action="store_true", default=False)
 
 args = parser.parse_args()
-
-if not args.cont:
-    for file in files_to_clean:
-        f = open(file, "w")
-        f.write('')
 
 if args.reset:
     for file in files_to_reset + files_to_clean:
@@ -84,16 +79,20 @@ def run_process(cmd):
 
 
 while True:
+    if not args.cont:
+        for file in files_to_clean:
+            f = open(file, "w")
+            f.write('')
     current_time = datetime.now()
     last_sync_date_str = ''
     with open(LAST_SYNC_TIME, 'r') as file:
         for line in file:
             last_sync_date_str = line.strip()
     if last_sync_date_str and not args.force:
-        # making sure we don't update too frequently
+        # making sure we don't update too frequently 
         diff = current_time - time_parser.parse(last_sync_date_str)
         hours_passed = diff.days * 24 + diff.seconds / 3600
-        if hours_passed <= 6:
+        if hours_passed <= 1:
             continue
 
     # making sure we're only updating at the right hours

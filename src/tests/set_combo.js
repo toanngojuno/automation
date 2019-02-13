@@ -2,12 +2,12 @@ const parse = require('csv-parse/lib/sync');
 const fs = require('fs');
 
 // INPUTS
-const MODE = 2; // MODE: 1=SINGLE, 2=DOUBLE
-const COMBO_PRICE = 600000; // NEEDED IF MODE == 1
-const ACCEPTABLE_PRICES = [600000, 800000]
-const START_DATE_STR = '10/10/2018';
-const END_DATE_STR = '21/10/2018';
-const NUMBER_OF_SHEETS = 2;
+const MODE = 1; // MODE: 1=SINGLE, 2=DOUBLE
+const COMBO_PRICE = 700000; // NEEDED IF MODE == 1
+const ACCEPTABLE_PRICES = [700000];
+const START_DATE_STR = '13/01/2019';
+const END_DATE_STR = '17/02/2019';
+const NUMBER_OF_SHEETS = 1;
 // END INPUTS
 
 const LAST_COMBO_FILE = `./src/tests/combo_${MODE}/last_added_combo.txt`;
